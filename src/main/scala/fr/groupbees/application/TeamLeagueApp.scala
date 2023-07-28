@@ -19,7 +19,7 @@ object TeamLeagueApp {
     val outputTeamStatsTable = args(3)
 
     val teamStatsRawEncoder = org.apache.spark.sql.Encoders.product[TeamStatsRaw]
-    val teamStatsRawDataset = spark.read.json(inputTeamStatsFilePath).as(teamStatsRawEncoder)
+    val teamStatsRawDataset: Dataset[TeamStatsRaw] = spark.read.json(inputTeamStatsFilePath).as(teamStatsRawEncoder)
 
     val teamSlogansDataframe = spark
       .read
