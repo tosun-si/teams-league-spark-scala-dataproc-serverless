@@ -1,0 +1,10 @@
+steps:
+  - name: sbtscala/scala-sbt:eclipse-temurin-17.0.4_1.7.1_3.2.0
+    script: |
+      sbt assembly
+  - name: google/cloud-sdk:420.0.0-slim
+    script: |
+      gcloud alpha storage cp $LOCAL_JAR_PATH $GCS_JARS_PATH
+    env:
+      - 'LOCAL_JAR_PATH=$_LOCAL_JAR_PATH'
+      - 'GCS_JARS_PATH=$_GCS_JARS_PATH'
